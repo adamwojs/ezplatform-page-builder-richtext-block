@@ -1,0 +1,34 @@
+{
+  "name": "ezsystems/ezplatform-page-builder-richtext-block",
+  "description": "eZ Platform RichText Block for Page Builder",
+  "license": "TTL-2.0",
+  "type": "ezplatform-bundle",
+  "repositories": [
+    { "type": "composer", "url": "https://updates.ez.no/ttl" }
+  ],
+  "require": {
+    "ezsystems/ezplatform-admin-ui": "^1.1",
+    "ezsystems/ezplatform-page-builder": "^1.0",
+    "ezsystems/ezpublish-kernel": "^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7.0",
+    "friendsofphp/php-cs-fixer": "2.7.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "EzSystems\\EzPlatformPageBuilderRichTextBlockBundle\\": "src/bundle/",
+      "EzSystems\\EzPlatformPageBuilderRichTextBlock\\": "src/lib/"
+    }
+  },
+  "scripts": {
+    "fix-cs": "@php ./vendor/bin/php-cs-fixer fix -v --show-progress=estimating"
+  },
+  "extra": {
+    "_ezplatform_branch_for_behat_tests": "master",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev",
+      "dev-tmp_ci_branch": "1.0.x-dev"
+    }
+  }
+}

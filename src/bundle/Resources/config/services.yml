@@ -1,0 +1,30 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    EzSystems\EzPlatformPageBuilderRichTextBlock\EventSubscriber\RichTextBlockSubscriber:
+        public: true
+        tags:
+            - { name: 'kernel.event_subscriber' }
+
+    EzSystems\EzPlatformPageBuilderRichTextBlock\PageBuilder\Block\Attribute\FormTypeMapper\RichTextFormTypeMapper:
+        public: true
+        tags:
+            - { name: 'ezplatform.page_builder.attribute_form_type_mapper', alias: 'richtext' }
+
+    EzSystems\EzPlatformPageBuilderRichTextBlock\Form\DataTransformer\RichTextDataTransformerFactory:
+        arguments:
+            $docbookToXhtml5EditConverter: '@ezpublish.fieldType.ezrichtext.converter.edit.xhtml5'
+            $internalFormatValidator: '@ezpublish.fieldType.ezrichtext.validator.docbook'
+            $inputConverterDispatcher: '@ezpublish.fieldType.ezrichtext.converter.input.dispatcher'
+            $inputNormalizer: '@ezpublish.fieldType.ezrichtext.normalizer.input'
+            $inputValidatorDispatcher: '@ezpublish.fieldType.ezrichtext.validator.input.dispatcher'
+            $internalLinkValidator: '@ezpublish.fieldType.ezrichtext.validator.internal_link'
+            $customTagsValidator: '@eZ\Publish\Core\FieldType\RichText\CustomTagsValidator'
+
+    EzSystems\EzPlatformPageBuilderRichTextBlock\Form\Type\RichTextAttributeType:
+        public: true
+        tags:
+            - { name: 'form.type' }

@@ -1,0 +1,60 @@
+{% extends '@EzPlatformPageBuilder/page_builder/block/config.html.twig' %}
+
+{% block meta %}
+    {{ parent() }}
+
+    <meta name="LanguageCode" content="eng-GB" />
+{% endblock %}
+
+{% block _block_configuration_attributes_content_widget %}
+    <div class="ez-field-edit--ezrichtext mt-2">
+        <div class="ez-data-source">
+            {{ form_row(form.id, {'label': false, 'attr': {'hidden': true}}) }}
+            {{ form_row(form.name, {'label': false, 'attr': {'hidden': true}}) }}
+            {{ form_label(form.value, form.vars.label) }}
+            {{ form_errors(form.value)}}
+            {{ form_widget(form.value, {'attr': {'hidden': true}}) }}
+
+            <div class="ez-data-source__richtext" id="{{ form.vars.id }}__editable"></div>
+        </div>
+    </div>
+
+    {% set udw_context = {
+        'languageCode': 'eng-GB',
+    } %}
+    <div class="hidden" data-udw-config-name="richtext_embed" data-udw-config="{{ ez_udw_config('richtext_embed', udw_context) }}"></div>
+    <div class="hidden" data-udw-config-name="richtext_embed_image" data-udw-config="{{ ez_udw_config('richtext_embed_image', udw_context) }}"></div>
+{% endblock %}
+
+{% block content %}
+    {% set form_templates = [
+        _self, '@EzPlatformPageBuilder/page_builder/block/form_fields.html.twig'
+    ] %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block basic_tab_content %}
+    <div class="mt-4 ml-4 mr-4">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets 'bundles/ezplatformadminui/css/alloyeditor/alloyeditor-ez.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {%  javascripts
+        '@EzPlatformAdminUiBundle/Resources/public/js/alloyeditor/dist/*.js'
+        '@EzPlatformPageBuilderRichTextBlockBundle/Resources/public/js/config-form/richtext.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

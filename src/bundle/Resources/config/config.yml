@@ -1,0 +1,20 @@
+assetic:
+    bundles:
+        - EzPlatformPageBuilderRichTextBlockBundle
+
+ezplatform_page_fieldtype:
+    blocks:
+        richtext:
+            name: 'RichText'
+            thumbnail: '/bundles/ezplatformadminui/img/ez-icons.svg#paragraph'
+            configuration_template: 'EzPlatformPageBuilderRichTextBlockBundle::richtext_config.html.twig'
+            views:
+                default:
+                    template: 'EzPlatformPageBuilderRichTextBlockBundle::richtext.html.twig'
+                    name: 'Default view'
+            attributes:
+                content:
+                    type: text
+                    validators:
+                        not_blank:
+                            message: 'Please provide a content'
