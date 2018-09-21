@@ -30,6 +30,9 @@ class RichTextBlockSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param \EzSystems\EzPlatformPageFieldType\FieldType\Page\Block\Definition\Event\BlockDefinitionEvent $event
+     */
     public function onBlockDefinition(BlockDefinitionEvent $event): void
     {
         $definition = $event->getDefinition();
@@ -47,6 +50,11 @@ class RichTextBlockSubscriber implements EventSubscriberInterface
         $definition->setAttributes($attributes);
     }
 
+    /**
+     * @param \EzSystems\EzPlatformPageFieldType\FieldType\Page\Block\Renderer\Event\PreRenderEvent $event
+     *
+     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentException
+     */
     public function onBlockPreRender(PreRenderEvent $event): void
     {
         $renderRequest = $event->getRenderRequest();
