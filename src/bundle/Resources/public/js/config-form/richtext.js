@@ -169,11 +169,13 @@
                     'ezimage',
                     'ezembed',
                     'eztable',
+                    ...customTags,
                 ],
                 tabIndex: 2,
             },
             styles: {
                 selections: [
+                    ...customTagsToolbars,
                     new window.eZ.ezAlloyEditor.ezLinkConfig(),
                     new window.eZ.ezAlloyEditor.ezTextConfig({ customStyles: customStylesConfigurations }),
                     new window.eZ.ezAlloyEditor.ezParagraphConfig({ customStyles: customStylesConfigurations }),
