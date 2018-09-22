@@ -143,6 +143,20 @@
         global.AlloyEditor.Buttons[buttonCustomTagUpdate.key] = global.AlloyEditor[updateClassName] = buttonCustomTagUpdate;
     });
 
+    const customStylesConfigurations = Object.entries(global.eZ.adminUiConfig.richTextCustomStyles).map(
+        ([customStyleName, customStyleConfig]) => {
+            return {
+                name: customStyleConfig.label,
+                style: {
+                    element: customStyleConfig.inline ? 'span' : 'div',
+                    attributes: {
+                        'data-ezstyle': customStyleName,
+                    },
+                },
+            };
+        }
+    );
+
     const container = global.document.querySelector('#block_configuration_attributes_content__editable');
     const alloyEditor = global.AlloyEditor.editable(container.getAttribute('id'), {
         toolbars: {
@@ -161,9 +175,10 @@
             styles: {
                 selections: [
                     new window.eZ.ezAlloyEditor.ezLinkConfig(),
-                    new window.eZ.ezAlloyEditor.ezTextConfig(),
-                    new window.eZ.ezAlloyEditor.ezParagraphConfig(),
-                    new window.eZ.ezAlloyEditor.ezHeadingConfig(),
+                    new window.eZ.ezAlloyEditor.ezTextConfig({ customStyles: customStylesConfigurations }),
+                    new window.eZ.ezAlloyEditor.ezParagraphConfig({ customStyles: customStylesConfigurations }),
+                    new window.eZ.ezAlloyEditor.ezCustomStyleConfig({ customStyles: customStylesConfigurations }),
+                    new window.eZ.ezAlloyEditor.ezHeadingConfig({ customStyles: customStylesConfigurations }),
                     new window.eZ.ezAlloyEditor.ezTableConfig(),
                     new window.eZ.ezAlloyEditor.ezEmbedImageConfig(),
                     new window.eZ.ezAlloyEditor.ezEmbedConfig(),
