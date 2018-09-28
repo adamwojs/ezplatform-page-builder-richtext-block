@@ -5,7 +5,7 @@ assetic:
 ezplatform_page_fieldtype:
     blocks:
         richtext:
-            name: 'RichText'
+            name: 'Text'
             thumbnail: '/bundles/ezplatformadminui/img/ez-icons.svg#paragraph'
             configuration_template: 'EzPlatformPageBuilderRichTextBlockBundle::richtext_config.html.twig'
             views:
